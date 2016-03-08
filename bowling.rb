@@ -47,6 +47,8 @@ class Bowling
       30
     elsif next_frame[0] == 10 && subsequent_frame[0] == 0
       20
+    elsif next_frame[0] == 10 && subsequent_frame[0] != 0
+      20 + subsequent_frame[0]
     else
       10 + next_frame[0] + next_frame[1]
     end
@@ -63,7 +65,7 @@ class Bowling
   end
 
   def normal_frames
-    [8, [@scoreboard.length - 2,0].max].min
+    [8, @scoreboard.length].min
   end
 
   def normal_frame_score
@@ -80,6 +82,8 @@ class Bowling
       30
     elsif frame[0] + frame[1] == 10 && frame[0]!= 10
       10 + next_frame[0]
+    else
+      frame_score
     end
   end
 
@@ -88,6 +92,8 @@ class Bowling
       30
     elsif frame[0] == 10 || frame[1] == 10 || (frame[0] + frame[1] == 10)
       frame[0] + frame[1] + frame[2]
+    else
+      frame_score
     end
   end
 
@@ -109,5 +115,3 @@ class Bowling
     score
   end
 end
-#
-# puts Bowling.new([[10, 0], [10, 0], [10, 0],[10, 0],[10, 0],[10, 0],[10, 0],[10, 0],[10, 0],[10, 10, 10]]).score
